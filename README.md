@@ -1,2 +1,2 @@
-# Ransonware-Phyton-Dio
-Desafio De criação de um ransonware em Phyton.
+# Ransomware-Phyton-Dio
+Desafio De criação de um ransomware em Phyton.
